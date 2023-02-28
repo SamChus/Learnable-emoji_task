@@ -3,13 +3,10 @@ import MiniCard from "./MiniCard";
 
 class Container extends Component {
   state = {
-    value: "",
+    
   };
 
-  handleChange = (e) => {
-    const value = e.target.value;
-    this.setState({ value });
-  };
+ 
   render() {
     return (
       <div className="container">
@@ -18,8 +15,8 @@ class Container extends Component {
           <p>A simple emoji search tool!!</p>
           <input
             type="text"
-            value={this.state.value}
-            onChange={(e) => this.handleChange(e)}
+            value={this.props.value}
+            onChange={this.props.onchange}
           />
         </div>
         <div className="card-body">

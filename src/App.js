@@ -4,7 +4,8 @@ import "./style.css";
 
 class App extends Component {
   state = {
-    emojis: []
+    emojis: [],
+    value: "",
   };
 
   componentDidMount() {
@@ -13,15 +14,21 @@ class App extends Component {
     )
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         this.setState({ emojis: result });
       });
   }
 
+  handleChange = (e) => {
+    const value = e.target.value;
+    this.setState({ value });
+  };
+
+  
+
   render() {
     return (
       <div>
-        <Container data={this.state.emojis} />
+        <Container data={this.state.emojis} onchange={this.handleChange} value={this.state.value}/>
       </div>
     );
   }
