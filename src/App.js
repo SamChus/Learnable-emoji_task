@@ -1,29 +1,30 @@
 import React, { Component } from "react";
 import Container from "./Container";
-import "./style.css"
+import "./style.css";
 
-const url = "https://emoji-api.com/emojis?access_key=0ca686060d6356a187f81da65df76fa2a903a752"
 class App extends Component {
   state = {
-    emojiData: [],
-    
+    emojis: []
   };
 
-  async componentDidMount() {
-    await fetch(url)
+  componentDidMount() {
+    fetch(
+      "https://emoji-api.com/emojis?access_key=0ca686060d6356a187f81da65df76fa2a903a752"
+    )
       .then((res) => res.json())
-      .then(({data}) => this.setState({emojiData: data}));
+      .then((result) => {
+        console.log(result);
+        this.setState({ emojis: result });
+      });
   }
-
- 
 
   render() {
     return (
       <div>
-        <Container data={this.state.emojiData}/>
+        <Container data={this.state.emojis} />
       </div>
     );
   }
-};
+}
 
 export default App;
